@@ -43,10 +43,4 @@ describe('FizzBuzzFormComponent', () => {
     expect(fizz.value).toEqual(3);
     expect(buzz.value).toEqual(4);
   });
-
-  describe('onSubmit', () => {
-    it('should navigate if fizz and buzz are between 2 and 10', () => {
-      
-    });
-  });
 });

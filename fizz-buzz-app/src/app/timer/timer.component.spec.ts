@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
-import { Observable, of } from 'rxjs';
-
 import { TimerComponent } from './timer.component';
 
 describe('TimerComponent', () => {
@@ -47,6 +45,48 @@ describe('TimerComponent', () => {
     it('should display buzz if buzz is multiple of time', () => {
       component.time = 8;
       expect(component.calculateFizzBuzz()).toEqual('Buzz');
+    });
+  })
+
+  describe('onStart', () => {
+    it('should start timer if not counting', () => {  
+      jasmine.clock().install();    
+      component.isCounting = false;
+      component.onStart();      
+      jasmine.clock().tick(4000);
+
+      expect(component.time).toEqual(4);
+      expect(component.displayText).toEqual('');
+      expect(component.isCounting).toEqual(true);
+
+      jasmine.clock().uninstall();
+    });
+    it('should switch isCounting & reset text', () => {    
+      component.isCounting = false;
+      component.onStart();      
+
+      expect(component.isCounting).toEqual(true);
+      expect(component.displayText).toEqual('');
+    });
+  });
+
+  describe('onStop', () => {
+    it('should stop timer if counting', () => {   
+      component.isCounting = true;
+      component.time = 12;       
+      spyOn(component, 'calculateFizzBuzz');
+      component.onStop();     
+
+      expect(component.calculateFizzBuzz).toHaveBeenCalled();
+      expect(component.isCounting).toEqual(false);
+    });
+
+    it('should reset timer if already stopped', () => {   
+      component.isCounting = false;
+      component.onStop();     
+
+      expect(component.displayText).toEqual('');
+      expect(component.time).toEqual(0);
     });
   })
 });
