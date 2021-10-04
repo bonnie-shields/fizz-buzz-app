@@ -1,0 +1,12 @@
+<section>
+    <button class="btn btn__primary" routerLink="/">{{ setTimesButtonText }}</button>
+    <p class="center margin-bottom-50">Time Elapsed</p>
+    <div class="counter center margin-bottom-50">
+        {{ time * 1000 | date: 'H:mm:ss':'UTC'}}
+    </div>
+    <div class="center margin-bottom-65">
+        <a class="btn btn__secondary btn--green margin-right-30" (click)="onStart()">Start</a>
+        <a class="btn btn__secondary btn--red" (click)="onStop()">Stop/Reset</a>
+    </div>
+    <h1 class="center">{{ displayText }}</h1>
+</section>

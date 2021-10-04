@@ -1,0 +1,17 @@
+<section>
+  <p class="margin-bottom-40">Please enter a fizz and buzz time in seconds. <strong>Values should be 2 to 10,
+      inclusive.</strong>
+  </p>
+  <form [formGroup]="fizzBuzzForm" (ngSubmit)="onSubmit()">
+    <div class="center margin-bottom-50">
+      <label for="fizz">Fizz:</label>
+      <input type="number" id="fizz" name="fizz" formControlName="fizz" />
+
+      <label for="buzz">Buzz:</label>
+      <input type="number" id="buzz" name="buzz" formControlName="buzz" />
+    </div>
+    <div class="center">
+      <button class="btn btn__primary" type="submit">{{ goToTimerButtonText }}</button>
+    </div>
+  </form>
+</section>
